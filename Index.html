@@ -4,50 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Prompt Generator</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .input-container {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        input, button {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        #output {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        #output li {
-            margin: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Character Prompt Generator</h1>
@@ -56,30 +13,6 @@
         <button onclick="generatePrompts()">Generate</button>
     </div>
     <ul id="output"></ul>
-
-    <script>
-        const subjects = ["knight", "wizard", "thief", "princess"]; // Example list
-        const descriptors = ["mysterious", "valiant", "cunning", "radiant"]; // Example list
-
-        function generatePrompts() {
-            const count = parseInt(document.getElementById("count").value);
-            const output = document.getElementById("output");
-            output.innerHTML = ""; // Clear previous output
-
-            if (!count || count < 1 || count > 30) {
-                output.innerHTML = "<li>Please enter a number between 1 and 30.</li>";
-                return;
-            }
-
-            for (let i = 0; i < count; i++) {
-                const subject = subjects[Math.floor(Math.random() * subjects.length)];
-                const descriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
-                const prompt = `Day ${i + 1}: A ${descriptor} ${subject}`;
-                const li = document.createElement("li");
-                li.textContent = prompt;
-                output.appendChild(li);
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
