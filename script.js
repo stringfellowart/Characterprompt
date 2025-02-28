@@ -59,7 +59,9 @@ async function generatePrompts() {
         } while (usedDescriptors.get(descriptor) >= maxRepeats && attempts < maxAttempts);
         usedDescriptors.set(descriptor, (usedDescriptors.get(descriptor) || 0) + 1);
 
-        const prompt = `Day ${i + 1}: ${subject} ${descriptor}`; // Removed "A"
+        // Capitalize the first letter of the subject
+        const capitalizedSubject = subject.charAt(0).toUpperCase() + subject.slice(1);
+        const prompt = `Day ${i + 1}: ${capitalizedSubject} ${descriptor}`;
         prompts.push(prompt);
     }
 
