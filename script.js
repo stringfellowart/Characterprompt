@@ -35,12 +35,42 @@ async function generatePrompts() {
         return;
     }
 
+    const usedSubjects = new Map(); // Track subject usage
+    const usedDescriptors = new Map(); // Track descriptor usage
+    const maxRepeats = 2; // Max times any subject or descriptor can appear
+    const prompts = [];
+
     for (let i = 0; i < count; i++) {
-        const subject = data.subjects[Math.floor(Math.random() * data.subjects.length)];
-        const descriptor = data.descriptors[Math.floor(Math.random() * data.descriptors.length)];
-        const prompt = `Day ${i + 1}: A ${subject} ${descriptor}`; // Updated format
+        let subject, descriptor, attempts = 0;
+        const maxAttempts = 10; // Prevent infinite loops
+
+        // Pick a subject with limited repeats
+        do {
+            subject = data.subjects[Math.floor(Math.random() * data.subjects.length)];
+            attempts++;
+        } while (usedSubjects.get(subject) >= maxRepeats && attempts < maxAttempts);
+        usedSubjects.set(subject, (usedSubjects.get(subject) || 0) + 1);
+
+        // Pick a descriptor with limited repeats
+        attempts = 0;
+        do {
+            descriptor = data.descriptors[Math.floor(Math.random() * data.descriptors.length)];
+            attempts++;
+        } while (usedDescriptors.get(descriptor) >= maxRepeats && attempts < maxAttempts);
+        usedDescriptors.set(descriptor, (usedDescriptors.get(descriptor) || 0) + 1);
+
+        const prompt = `Day ${i + 1}: A ${subject} ${descriptor}`;
+        prompts.push(prompt);
+    }
+
+    // Display prompts
+    prompts.forEach(prompt => {
         const li = document.createElement("li");
         li.textContent = prompt;
         output.appendChild(li);
-    }
+    });
+
+    // Log usage for debugging
+    console.log('Used Subjects:', Object.fromEntries(usedSubjects));
+    console.log('Used Descriptors:', Object.fromEntries(usedDescriptors));
 }
