@@ -22,9 +22,7 @@ async function loadData() {
 async function generatePrompts() {
     const count = parseInt(document.getElementById("count").value) || 1; // Default to 1 if empty
     const output = document.getElementById("output");
-    const promptOutput = document.getElementById("promptOutput");
     output.innerHTML = ""; // Clear previous list
-    promptOutput.innerHTML = ""; // Clear previous single prompt
 
     if (count < 1 || count > 100) {
         output.innerHTML = "<li>Please enter a number between 1 and 100.</li>";
@@ -66,14 +64,10 @@ async function generatePrompts() {
     }
 
     // Display prompts in the list
-    prompts.forEach((prompt, index) => {
+    prompts.forEach(prompt => {
         const li = document.createElement("li");
         li.textContent = prompt;
         output.appendChild(li);
-        // Display the last prompt in the single prompt output
-        if (index === prompts.length - 1) {
-            promptOutput.textContent = prompt.replace(/^Day \d+: /, ""); // Remove "Day X:" for single prompt
-        }
     });
 
     // Log usage for debugging
