@@ -59,7 +59,7 @@ async function generatePrompts() {
         } while (usedDescriptors.get(descriptor) >= maxRepeats && attempts < maxAttempts);
         usedDescriptors.set(descriptor, (usedDescriptors.get(descriptor) || 0) + 1);
 
-        const prompt = `Day ${i + 1}: A ${subject} ${descriptor}`;
+        const prompt = `Day ${i + 1}: ${subject} ${descriptor}`; // Removed "A"
         prompts.push(prompt);
     }
 
