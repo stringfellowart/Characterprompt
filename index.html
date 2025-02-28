@@ -6,15 +6,13 @@
     <title>Character Prompt Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="generatePrompts()">
     <h1>Character Prompt Generator</h1>
     <div class="input-container">
-        <input type="number" id="count" min="1" max="100" value="1" placeholder="Enter number (1-100)">
+        <input type="number" id="count" min="1" max="100" value="1" placeholder="Enter number (1-100)" onkeypress="if(event.key === 'Enter') generatePrompts()">
         <button onclick="generatePrompts()">Generate</button>
     </div>
     <ul id="output"></ul>
-    <h3>Your Prompt:</h3>
-    <div id="promptOutput"></div>
     <div class="save-area">
         <h3>Save Your Favorite Prompts</h3>
         <textarea id="savedPrompts" rows="5" cols="50" placeholder="Paste or type prompts here..."></textarea>
