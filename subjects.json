@@ -1,3 +1,7 @@
 {
-    "subjects": ["knight", "wizard", "thief", "princess"]
+    "subjects": [
+        "owl", "deer", "fox", "boar", "sable", "witch", "forest spirit", "two sisters", "fairy", "little people",
+        "herbalist", "prophet", "hermit", "frog", "maiden", "goddess", "bride", "knight", "Druid", "farmer",
+        "stag", "willow", "pixie", "bard", "golem", "elf", "sprite", "shepherd", "raven", "crone"
+    ]
 }
