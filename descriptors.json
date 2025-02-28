@@ -1,3 +1,10 @@
 {
-    "descriptors": ["mysterious", "valiant", "cunning", "radiant"]
+    "descriptors": [
+        "with a magic wand", "with a mushroom basket", "and a big acorn", "and an old book", "and chocolate cookies",
+        "who wears a magic amulet", "wears stars in their hair", "with a herb basket", "with a golden harp",
+        "with a mushroom circle", "who keeps the river's secrets", "with a lantern", "with a silver heart",
+        "who hums a forgotten tune", "with a crystal crown", "and a velvet pouch", "who dances in moonbeams",
+        "with a feather quill", "and a glowing orb", "who guards the ancient oak", "with a starry cloak",
+        "and a tiny bell", "who whispers to the wind"
+    ]
 }
