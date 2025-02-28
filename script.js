@@ -20,12 +20,14 @@ async function loadData() {
 }
 
 async function generatePrompts() {
-    const count = parseInt(document.getElementById("count").value);
+    const count = parseInt(document.getElementById("count").value) || 1; // Default to 1 if empty
     const output = document.getElementById("output");
-    output.innerHTML = ""; // Clear previous output
+    const promptOutput = document.getElementById("promptOutput");
+    output.innerHTML = ""; // Clear previous list
+    promptOutput.innerHTML = ""; // Clear previous single prompt
 
-    if (!count || count < 1 || count > 30) {
-        output.innerHTML = "<li>Please enter a number between 1 and 30.</li>";
+    if (count < 1 || count > 100) {
+        output.innerHTML = "<li>Please enter a number between 1 and 100.</li>";
         return;
     }
 
@@ -63,14 +65,34 @@ async function generatePrompts() {
         prompts.push(prompt);
     }
 
-    // Display prompts
-    prompts.forEach(prompt => {
+    // Display prompts in the list
+    prompts.forEach((prompt, index) => {
         const li = document.createElement("li");
         li.textContent = prompt;
         output.appendChild(li);
+        // Display the last prompt in the single prompt output
+        if (index === prompts.length - 1) {
+            promptOutput.textContent = prompt.replace(/^Day \d+: /, ""); // Remove "Day X:" for single prompt
+        }
     });
 
     // Log usage for debugging
     console.log('Used Subjects:', Object.fromEntries(usedSubjects));
     console.log('Used Descriptors:', Object.fromEntries(usedDescriptors));
+}
+
+function exportToTxt() {
+    const savedPrompts = document.getElementById("savedPrompts").value;
+    if (!savedPrompts.trim()) {
+        alert("No prompts to export!");
+        return;
+    }
+
+    const blob = new Blob([savedPrompts], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "saved_prompts.txt";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
