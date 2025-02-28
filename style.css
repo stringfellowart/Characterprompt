@@ -4,6 +4,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #f5f5f5;
+    background-image: (background.pmg);
     color: #333;
 }
 h1, h3 {
